@@ -2,6 +2,7 @@ package br.com.barbearia.model;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +38,7 @@ public class Agenda {
 	@JoinTable(name = "agenda_itens", joinColumns = 
 	@JoinColumn(name = "id_agenda"), inverseJoinColumns = 
     @JoinColumn(name = "id_servico"))
+	private List<Servico> servicos;
 
 	public Integer getId() {
 		return id;
@@ -68,6 +70,14 @@ public class Agenda {
 
 	public void setHoraAgendamento(Date horaAgendamento) {
 		this.horaAgendamento = horaAgendamento;
+	}
+	
+	public List<Servico> getServicos() {
+		return servicos;
+	}
+	
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
 	}
 
 	@Override
