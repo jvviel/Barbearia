@@ -1,6 +1,8 @@
 package br.com.barbearia.model;
 
-import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +22,7 @@ public class Consumo {
 	private Integer id;
 	
 	@Column(name = "data_consumo")
-	private LocalDate dataConsumo;
+	private String dataConsumo;
 	
 	@Column(name = "valor_total")
 	private Double valorTotal;
@@ -30,6 +32,16 @@ public class Consumo {
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
+	
+	public Consumo() {
+		this.dataConsumo = getLocalDate();
+	}
+	
+	public String getLocalDate() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
 
 	public Integer getId() {
 		return id;
@@ -39,11 +51,11 @@ public class Consumo {
 		this.id = id;
 	}
 
-	public LocalDate getDataConsumo() {
+	public String getDataConsumo() {
 		return dataConsumo;
 	}
 
-	public void setDataConsumo(LocalDate dataConsumo) {
+	public void setDataConsumo(String dataConsumo) {
 		this.dataConsumo = dataConsumo;
 	}
 

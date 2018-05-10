@@ -18,8 +18,6 @@ public class ConsumoItens {
 	
 	private Double valor;
 	
-	private Integer pontacao;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_servico")
 	private Servico servico;
@@ -42,14 +40,6 @@ public class ConsumoItens {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
-	}
-
-	public Integer getPontacao() {
-		return pontacao;
-	}
-
-	public void setPontacao(Integer pontacao) {
-		this.pontacao = pontacao;
 	}
 
 	public Servico getServico() {

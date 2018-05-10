@@ -1,5 +1,7 @@
 package br.com.barbearia.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -13,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "agenda")
@@ -25,20 +25,29 @@ public class Agenda {
 	private Integer id;
 	
 	@Column(name = "data_operacao")
-	private LocalDate dataOperacao;
+	private String dataOperacao;
 	
 	@Column(name = "data_agendamento")
 	private LocalDate dataAgendamento;
 	
 	@Column(name = "hora_agendamento")
-	@Temporal(TemporalType.TIME)
-	private Date horaAgendamento;
+	private String horaAgendamento;
 	
 	@ManyToMany
 	@JoinTable(name = "agenda_itens", joinColumns = 
 	@JoinColumn(name = "id_agenda"), inverseJoinColumns = 
     @JoinColumn(name = "id_servico"))
 	private List<Servico> servicos;
+	
+	public Agenda() {
+		dataOperacao = getLocalDate();
+	}
+	
+	public String getLocalDate() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		return dateFormat.format(date);
+}
 
 	public Integer getId() {
 		return id;
@@ -48,11 +57,11 @@ public class Agenda {
 		this.id = id;
 	}
 
-	public LocalDate getDataOperacao() {
+	public String getDataOperacao() {
 		return dataOperacao;
 	}
 
-	public void setDataOperacao(LocalDate dataOperacao) {
+	public void setDataOperacao(String dataOperacao) {
 		this.dataOperacao = dataOperacao;
 	}
 
@@ -64,11 +73,11 @@ public class Agenda {
 		this.dataAgendamento = dataAgendamento;
 	}
 
-	public Date getHoraAgendamento() {
+	public String getHoraAgendamento() {
 		return horaAgendamento;
 	}
 
-	public void setHoraAgendamento(Date horaAgendamento) {
+	public void setHoraAgendamento(String horaAgendamento) {
 		this.horaAgendamento = horaAgendamento;
 	}
 	
