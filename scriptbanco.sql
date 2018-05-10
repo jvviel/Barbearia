@@ -9,7 +9,7 @@ descricao varchar(50) not null,
 valor float not null,
 pontuacao int,
 id_tipo bigint(20),
-foreign key(id_tipo) references tipo.id
+foreign key(id_tipo) references tipo(id)
 ) default charset=utf8;
 
 create table usuario (
@@ -27,22 +27,22 @@ data_consumo date,
 valor_total float,
 pago varchar(1),
 id_usuario bigint(20),
-foreign key(id_usuario)
+foreign key(id_usuario) references usuario(id)
 ) default charset=utf8;
 
 create table agenda (
 id bigint(20) primary key auto_increment,
-data_operacao date;
-data_agendamento date;
-hora_agendamento time
+data_operacao date,
+data_agendamento date,
+hora_agendamento TIME
 ) default charset=utf8;
 
 create table agenda_itens (
 id_agenda bigint(20) not null,
 id_servico bigint(20) not null,
 primary key(id_agenda, id_servico),
-foreign key(id_agenda) references agenda.id_agenda,
-foreign key(id_servico) references produto_servico.id_servico
+foreign key(id_agenda) references agenda(id),
+foreign key(id_servico) references produto_servico(id_servico)
 );
 
 create table consumo_itens (
@@ -51,8 +51,8 @@ valor float,
 pontuacao int,
 id_servico bigint(20),
 id_consumo bigint(20),
-foreign key(id_servico) references produto_servico.id_servico,
-foreign key(id_consumo) references consumo.id
+foreign key(id_servico) references produto_servico(id_servico),
+foreign key(id_consumo) references consumo(id)
 );
 
 
