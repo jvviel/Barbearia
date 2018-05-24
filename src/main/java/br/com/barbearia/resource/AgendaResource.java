@@ -1,6 +1,7 @@
 package br.com.barbearia.resource;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.barbearia.model.Agenda;
+import br.com.barbearia.model.Horarios;
 import br.com.barbearia.repository.AgendaRepository;
 import br.com.barbearia.service.AgendaService;
 
@@ -37,6 +39,11 @@ public class AgendaResource {
 	@GetMapping("/{id}")
 	public Agenda buscaPorId(@PathVariable Integer id) {
 		return agendaService.buscarAgendaPorId(id);
+	}
+	
+	@GetMapping("/horarios/{dataAgendamento}")
+	public Set<Horarios> listarHorarios(@PathVariable String dataAgendamento) {
+		return agendaService.consultarHorarioDisponivel(dataAgendamento);
 	}
 	
 	@PostMapping

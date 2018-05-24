@@ -2,7 +2,6 @@ package br.com.barbearia.model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,10 +28,15 @@ public class Agenda {
 	private String dataOperacao;
 	
 	@Column(name = "data_agendamento")
-	private LocalDate dataAgendamento;
+	private String dataAgendamento;
 	
-	@Column(name = "hora_agendamento")
-	private String horaAgendamento;
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_horario")
+	private Horarios horario;
 	
 	@ManyToMany
 	@JoinTable(name = "agenda_itens", joinColumns = 
@@ -65,20 +70,12 @@ public class Agenda {
 		this.dataOperacao = dataOperacao;
 	}
 
-	public LocalDate getDataAgendamento() {
+	public String getDataAgendamento() {
 		return dataAgendamento;
 	}
 
-	public void setDataAgendamento(LocalDate dataAgendamento) {
+	public void setDataAgendamento(String dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
-	}
-
-	public String getHoraAgendamento() {
-		return horaAgendamento;
-	}
-
-	public void setHoraAgendamento(String horaAgendamento) {
-		this.horaAgendamento = horaAgendamento;
 	}
 	
 	public List<Servico> getServicos() {
@@ -87,6 +84,22 @@ public class Agenda {
 	
 	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Horarios getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Horarios horario) {
+		this.horario = horario;
 	}
 
 	@Override
