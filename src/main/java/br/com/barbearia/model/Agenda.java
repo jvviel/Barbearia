@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "agenda")
@@ -27,13 +28,16 @@ public class Agenda {
 	@Column(name = "data_operacao")
 	private String dataOperacao;
 	
+	@NotNull
 	@Column(name = "data_agendamento")
 	private String dataAgendamento;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_horario")
 	private Horarios horario;
@@ -48,6 +52,7 @@ public class Agenda {
 	
 	public Agenda() {
 		dataOperacao = getLocalDate();
+		this.confirmado = "N";
 	}
 	
 	public String getLocalDate() {

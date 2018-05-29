@@ -2,6 +2,8 @@ package br.com.barbearia.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,13 +42,13 @@ public class ConsumoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Consumo> gravarConsumo(@RequestBody Consumo consumo) {
+	public ResponseEntity<Consumo> gravarConsumo(@Valid @RequestBody Consumo consumo) {
 		Consumo consumoSalvo = consumoRepository.save(consumo);
 		return ResponseEntity.status(HttpStatus.CREATED).body(consumoSalvo);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Consumo> alterarConsumo(@RequestBody Consumo consumo,
+	public ResponseEntity<Consumo> alterarConsumo(@Valid @RequestBody Consumo consumo,
 			@PathVariable Integer id) {
 		Consumo consumoSalvo = consumoService.atualizarConsumo(consumo, id);
 		

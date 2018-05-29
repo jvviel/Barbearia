@@ -2,6 +2,8 @@ package br.com.barbearia.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,14 +42,14 @@ public class TipoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Tipo> gravarTipo(@RequestBody Tipo tipo) {
+	public ResponseEntity<Tipo> gravarTipo(@Valid @RequestBody Tipo tipo) {
 		Tipo tipoSalvo = tipoRepository.save(tipo);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(tipoSalvo);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Tipo> alterarTipo(@PathVariable Integer id, @RequestBody Tipo tipo) {
+	public ResponseEntity<Tipo> alterarTipo(@Valid @PathVariable Integer id, @RequestBody Tipo tipo) {
 		Tipo tipoSalvo = tipoService.atualizarTipo(id, tipo);
 		
 		return ResponseEntity.ok().body(tipoSalvo);

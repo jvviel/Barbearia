@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "consumo")
@@ -27,11 +28,13 @@ public class Consumo {
 	@Column(name = "data_consumo")
 	private String dataConsumo;
 	
+	@NotNull
 	@Column(name = "valor_total")
 	private Double valorTotal;
 	
 	private String pago;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
@@ -51,6 +54,7 @@ public class Consumo {
 		this.dataConsumo = getLocalDate();
 		this.pontuacao = 0;
 		this.pontuacaoUsada = 0;
+		this.pago = "N";
 	}
 	
 	public String getLocalDate() {

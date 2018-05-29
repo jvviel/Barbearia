@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "produto_servico")
@@ -18,12 +19,16 @@ public class Servico {
 	@Column(name = "id_servico")
 	private Integer id;
 	
+	@NotNull
 	private String descricao;
 	
+	@NotNull
 	private Double valor;
 	
+	@NotNull
 	private Integer pontuacao;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name ="id_tipo")
 	private Tipo tipo;

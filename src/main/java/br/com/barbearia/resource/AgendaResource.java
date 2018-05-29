@@ -2,6 +2,8 @@ package br.com.barbearia.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,14 +48,14 @@ public class AgendaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Agenda> gravarAgenda(@RequestBody Agenda agenda) {
+	public ResponseEntity<Agenda> gravarAgenda(@Valid @RequestBody Agenda agenda) {
 		Agenda agendaSalva = agendaRepository.save(agenda);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(agendaSalva);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Agenda> alterarAgenda(@PathVariable Integer id,
+	public ResponseEntity<Agenda> alterarAgenda(@Valid @PathVariable Integer id,
 			@RequestBody Agenda agenda) {
 		Agenda agendaSalva = agendaService.atualizarAgenda(id, agenda);
 		

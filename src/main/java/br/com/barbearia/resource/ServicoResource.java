@@ -2,6 +2,8 @@ package br.com.barbearia.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,14 +41,14 @@ public class ServicoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Servico> gravarServico(@RequestBody Servico servico) {
+	public ResponseEntity<Servico> gravarServico(@Valid @RequestBody Servico servico) {
 		Servico servicoSalvo = servicoRepository.save(servico);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(servicoSalvo);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Servico> alterarServico(@PathVariable Integer id,
+	public ResponseEntity<Servico> alterarServico(@Valid @PathVariable Integer id,
 			@RequestBody Servico servico) {
 		Servico servicoAtualizar = servicoService.atualizarServico(id, servico);
 		
