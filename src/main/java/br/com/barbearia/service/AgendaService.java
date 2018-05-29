@@ -1,8 +1,6 @@
 package br.com.barbearia.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,17 +36,17 @@ public class AgendaService {
 		return agendaRepository.save(agendaSalva);
 	}
 	
-	public Set<Horarios> consultarHorarioDisponivel(String dataAgendamento) {
+	public List<Horarios> consultarHorarioDisponivel(String dataAgendamento) {
 		List<Horarios> horarios = horarioRepository.findAll();
-		Set<Horarios> horariosDisponiveis = new HashSet<>();
 		List<Agenda> agendamentos = agendaRepository.findByDataAgendamento(dataAgendamento);
 		for(Agenda agenda : agendamentos) {
 			for (Horarios horario : horarios) {
-				if(agenda.getHorario().getHorario() != horario.getHorario()) {
-					horariosDisponiveis.add(horario);
+				if(agenda.getHorario().getHorario().equals(horario.getHorario())) {
+					horarios.remove(horario);
+					break;
 				}
 			}
 		}
-		return horariosDisponiveis;
+		return horarios;
 		}
 }

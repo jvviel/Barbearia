@@ -3,6 +3,7 @@ package br.com.barbearia.model;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -33,8 +36,22 @@ public class Consumo {
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 	
+	@ManyToMany
+	@JoinTable(name = "consumo_itens", joinColumns = 
+	@JoinColumn(name = "id_consumo"), inverseJoinColumns = 
+    @JoinColumn(name = "id_servico"))
+	private List<Servico> servicos;
+	
+	@Column(name = "total_pontuacao")
+	private Integer pontuacaoTotal;
+	
+	@Column(name = "pontuacao_usada")
+	private Integer pontuacaoUsada;
+	
 	public Consumo() {
 		this.dataConsumo = getLocalDate();
+		this.pontuacaoTotal = 0;
+		this.pontuacaoUsada = 0;
 	}
 	
 	public String getLocalDate() {
@@ -81,6 +98,29 @@ public class Consumo {
 	
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	public List<Servico> getServicos() {
+		return servicos;
+	}
+	
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
+	}
+
+	public Integer getPontuacaoTotal() {
+		return pontuacaoTotal;
+	}
+
+	public void setPontuacaoTotal(Integer pontuacaoTotal) {
+		this.pontuacaoTotal = pontuacaoTotal;
+	}
+
+	public Integer getPontuacaoUsada() {
+		return pontuacaoUsada;
+	}
+
+	public void setPontuacaoUsada(Integer pontuacaoUsada) {
+		this.pontuacaoUsada = pontuacaoUsada;
 	}
 
 	@Override

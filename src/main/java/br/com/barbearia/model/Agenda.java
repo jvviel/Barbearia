@@ -38,6 +38,8 @@ public class Agenda {
 	@JoinColumn(name = "id_horario")
 	private Horarios horario;
 	
+	private String confirmado;
+	
 	@ManyToMany
 	@JoinTable(name = "agenda_itens", joinColumns = 
 	@JoinColumn(name = "id_agenda"), inverseJoinColumns = 
@@ -100,6 +102,14 @@ public class Agenda {
 
 	public void setHorario(Horarios horario) {
 		this.horario = horario;
+	}
+	
+	public String getConfirmado() {
+		return confirmado;
+	}
+	
+	public void setConfirmado(String confirmado) {
+		this.confirmado = confirmado;
 	}
 
 	@Override
