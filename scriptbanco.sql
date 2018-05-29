@@ -57,6 +57,29 @@ foreign key(id_consumo) references consumo(id)
 
 
 
+#atualização das tabelas
+
+
+
+alter table consumo add column pontuacao bigint(10);
+
+drop table consumo_itens;
+
+create table consumo_itens (
+id_servico bigint(20),
+id_consumo bigint(20),
+primary key (id_consumo, id_servico),
+foreign key(id_servico) references produto_servico(id_servico),
+foreign key(id_consumo) references consumo(id)
+);
+
+alter table agenda add column confirmado varchar(1);
+
+alter table consumo add column pontuacao_usada int;
+
+
+
+
 
 
 

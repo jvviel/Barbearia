@@ -42,15 +42,14 @@ public class Consumo {
     @JoinColumn(name = "id_servico"))
 	private List<Servico> servicos;
 	
-	@Column(name = "total_pontuacao")
-	private Integer pontuacaoTotal;
+	private Integer pontuacao;
 	
 	@Column(name = "pontuacao_usada")
 	private Integer pontuacaoUsada;
 	
 	public Consumo() {
 		this.dataConsumo = getLocalDate();
-		this.pontuacaoTotal = 0;
+		this.pontuacao = 0;
 		this.pontuacaoUsada = 0;
 	}
 	
@@ -107,12 +106,12 @@ public class Consumo {
 		this.servicos = servicos;
 	}
 
-	public Integer getPontuacaoTotal() {
-		return pontuacaoTotal;
+	public Integer getPontuacao() {
+		return pontuacao;
 	}
 
-	public void setPontuacaoTotal(Integer pontuacaoTotal) {
-		this.pontuacaoTotal = pontuacaoTotal;
+	public void setPontuacao(Integer pontuacao) {
+		this.pontuacao = pontuacao;
 	}
 
 	public Integer getPontuacaoUsada() {
