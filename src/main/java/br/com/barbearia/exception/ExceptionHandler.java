@@ -89,7 +89,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 	private List<Erro> criarListaDeErros(BindingResult bindingResult) {
 		List<Erro> erros = new ArrayList<>();
 		
-		for( FieldError fieldError : bindingResult.getFieldErrors()) {
+		for(FieldError fieldError : bindingResult.getFieldErrors()) {
 			String mensagemUsuario = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 			String mensagemDesenvolvedor = fieldError.toString();
 			erros.add(new Erro(mensagemUsuario, mensagemDesenvolvedor));

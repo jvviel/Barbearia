@@ -1,6 +1,8 @@
 package br.com.barbearia.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +30,13 @@ public class Usuario {
 	private String senha;
 	
 	private Integer pontuacao;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoUsuario tipo;
+	
+	public Usuario() {
+		this.tipo = TipoUsuario.CLIENTE;
+	}
 
 	public Integer getId() {
 		return id;
@@ -75,6 +84,14 @@ public class Usuario {
 
 	public void setPontuacao(Integer pontuacao) {
 		this.pontuacao = pontuacao;
+	}
+	
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+	
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
