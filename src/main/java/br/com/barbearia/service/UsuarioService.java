@@ -27,4 +27,10 @@ public class UsuarioService {
 		BeanUtils.copyProperties(usuario, usuarioSalvo, "id");
 		return usuarioRepository.save(usuarioSalvo);
 	}
+	
+	/*public String encoderPassword(String password) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		password = encoder.encode(password);
+		return password;
+	}*/
 }
