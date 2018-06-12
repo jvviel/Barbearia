@@ -1,4 +1,4 @@
-/*package br.com.barbearia.security;
+package br.com.barbearia.security;
 
 import java.util.Collection;
 
@@ -23,4 +23,4 @@ public class UsuarioSistema extends User{
 		return usuario;
 	}
 
-}*/
+}

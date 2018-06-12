@@ -1,4 +1,4 @@
-/*package br.com.barbearia.security;
+package br.com.barbearia.security;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -39,4 +39,3 @@ public class AppUserDetailsService implements UserDetailsService{
 }
 
 }
-*/

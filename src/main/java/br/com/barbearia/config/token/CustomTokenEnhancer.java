@@ -1,4 +1,4 @@
-/*package br.com.barbearia.config.token;
+package br.com.barbearia.config.token;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,4 +27,4 @@ public class CustomTokenEnhancer implements TokenEnhancer {
 	}
 
 }
-*/
+

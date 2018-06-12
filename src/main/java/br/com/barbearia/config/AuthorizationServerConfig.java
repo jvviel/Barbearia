@@ -1,4 +1,4 @@
-/*package br.com.barbearia.config;
+package br.com.barbearia.config;
 
 import java.util.Arrays;
 
@@ -62,4 +62,3 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		return new JwtTokenStore(accessTokenConverter());
 	}
 }
-*/

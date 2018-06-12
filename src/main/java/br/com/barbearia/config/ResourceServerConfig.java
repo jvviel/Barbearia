@@ -1,4 +1,4 @@
-/*package br.com.barbearia.config;
+package br.com.barbearia.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -52,4 +52,3 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 		return new OAuth2MethodSecurityExpressionHandler();
 	}
 }
-*/
