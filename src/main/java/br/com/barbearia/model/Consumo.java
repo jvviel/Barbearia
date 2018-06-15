@@ -28,7 +28,6 @@ public class Consumo {
 	@Column(name = "data_consumo")
 	private String dataConsumo;
 	
-	@NotNull
 	@Column(name = "valor_total")
 	private Double valorTotal;
 	

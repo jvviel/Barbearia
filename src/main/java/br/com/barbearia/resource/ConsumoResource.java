@@ -47,14 +47,31 @@ public class ConsumoResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(consumoSalvo);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Consumo> alterarConsumo(@Valid @RequestBody Consumo consumo,
+	@PutMapping("/calcularTotal/{id}")
+	public ResponseEntity<Consumo> calcularTotal(@Valid @RequestBody Consumo consumo,
 			@PathVariable Integer id) {
+		consumoService.calcularTotalConsumoETotalPontuacao(consumo);
 		Consumo consumoSalvo = consumoService.atualizarConsumo(consumo, id);
-		
 		return ResponseEntity.ok().body(consumoSalvo);
 	}
 	
+	@PutMapping("/usarPontuacao/{id}")
+	public ResponseEntity<Consumo> concederPontuacao(@Valid @PathVariable Integer id, 
+			@RequestBody Consumo consumo) {
+		Consumo consumoSalvo = consumoService.utilizarPontuacaoAcumulada(consumo);
+		consumoSalvo = consumoService.atualizarConsumo(consumoSalvo, id);
+		return ResponseEntity.ok().body(consumoSalvo);
+		
+	}
+	
+	@PutMapping("/finalizarConsumo/{id}")
+	public ResponseEntity<Consumo> finalizarConsumo(@RequestBody Consumo consumo,
+			@PathVariable Integer id) {
+		Consumo consumoSalvo = consumoService.finalizarConsumo(consumo);
+		consumoSalvo = consumoService.atualizarConsumo(consumoSalvo, id);
+		return ResponseEntity.ok().body(consumoSalvo);
+	}
+	 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void removerConsumo(@PathVariable Integer id) {
