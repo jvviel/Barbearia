@@ -42,7 +42,7 @@ public class UsuarioResource {
 	
 	@PostMapping
 	public ResponseEntity<Usuario> gravarUsuario(@Valid @RequestBody Usuario usuario) {
-		//usuario.setSenha(usuarioService.encoderPassword(usuario.getSenha()));
+		usuario.setSenha(usuarioService.encoderPassword(usuario.getSenha()));
 		Usuario usuarioSalvo = usuarioRepository.save(usuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
 	}
@@ -50,7 +50,7 @@ public class UsuarioResource {
 	@PutMapping("/{id}")
 	public ResponseEntity<Usuario> alterarUsuario(@Valid @PathVariable Integer id,
 			@RequestBody Usuario usuario) {
-		//usuario.setSenha(usuarioService.encoderPassword(usuario.getSenha()));
+		usuario.setSenha(usuarioService.encoderPassword(usuario.getSenha()));
 		Usuario usuarioSalvo = usuarioService.atualizarUsuario(usuario, id);
 		return ResponseEntity.ok().body(usuarioSalvo);
 	}
